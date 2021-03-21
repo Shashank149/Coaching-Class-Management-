@@ -1,0 +1,1551 @@
+
+******************HEROHONDA SHOWROOM MANAGEMENT QUERIES******************  
+==========================================================================
+****************DATA DEFINITION LANGUAGE COMMAND 1 TO 32*************************
+==========================================================================
+QUERY 1:-create table.
+
+SQL> CREATE TABLE Employee
+  2  ( emp_ID varchar(4) primary key,
+  3    emp_name varchar(25),
+  4    emp_addr varchar(30),
+  5    emp_sal  number(7)
+  6  );
+
+Table created.
+=================================================================================
+QUERY 2:-describe table.
+SQL>2 describe Employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL VARCHAR2(4)
+ EMP_NAME                                           VARCHAR2(25)
+ EMP_ADDR                                           VARCHAR2(30)
+ EMP_SAL                                            NUMBER(7)
+
+==================================================================================
+QUERY 3:-create table.
+
+SQL>3 CREATE TABLE Customer
+  2  ( cus_ID varchar(4) primary key,
+  3    cus_name varchar(25),
+  4    cus_add varchar(30)
+  5  );
+
+Table created.
+
+=======================================================================================
+QUERY 4:-describe table.
+
+SQL> describe Customer
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUS_ID                                    NOT NULL VARCHAR2(4)
+ CUS_NAME                                           VARCHAR2(25)
+ CUS_ADD                                            VARCHAR2(30)
+
+====================================================================================== 
+QUERY 5:-create table.
+
+SQL>  CREATE TABLE WorksFor
+  2  ( emp_ID varchar(4) primary key,
+  3    dep_ID varchar(4) ,
+  4    dep_name varchar(15)
+  5  );
+
+Table created.
+=====================================================================================
+QUERY 6:-describe table.
+
+
+SQL> describe WorksFor
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL VARCHAR2(4)
+ DEP_ID                                             VARCHAR2(4)
+ DEP_NAME                                           VARCHAR2(15)
+============================================================================================
+QUERY 7:-create table.
+
+SQL> Create Table Dept1
+  2  ( dep_ID varchar(5) primary key,
+  3    dep_name varchar(20)
+  4  );
+
+Table created.
+
+===============================================================================================
+QUERY 8:-describe table.
+
+SQL> describe Dept1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL VARCHAR2(5)
+ DEP_NAME                                           VARCHAR2(20)
+
+=============================================================================================
+QUERY 9:-create table.
+   
+SQL>9 create table Guides1
+  2  ( emp_ID varchar2(4) primary key,
+  3    cus_ID varchar2(4) ,
+  4     foreign key (emp_ID)references Employee(emp_ID),
+  5  foreign key (cus_ID)references Customer(cus_ID)
+  6  );
+
+Table created.
+
+===============================================================================================
+QUERY 10:-describe table.
+
+SQL>10 describe Guides1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL VARCHAR2(4)
+ CUS_ID                                             VARCHAR2(4)
+
+===========================================================================================
+Query 11:- Delete the table having name emp ?
+
+SQL> delete emp;
+
+14 rows deleted.
+=================================================================================================
+query 12:-alter table.
+
+SQL> alter table employee 
+  2  add( sample varchar2(4) );
+
+Table altered.
+
+===============================================================================================
+QUERY 13:-describe table.
+
+SQL> describe employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL VARCHAR2(4)
+ EMP_NAME                                           VARCHAR2(25)
+ EMP_ADDR                                           VARCHAR2(30)
+ EMP_SAL                                            NUMBER(7)
+ SAMPLE                                             VARCHAR2(4)
+
+==================================================================================================
+query 14:-alter table.
+
+SQL> alter table employee
+  2  drop(sample);
+
+Table altered. 
+==================================================================================================
+query 15:-alter table.
+
+SQL>  alter table employee 
+  2   add( sample varchar2(4) );
+
+Table altered.
+
+=================================================================================================
+query 16:-rename  table.
+
+SQL> rename emp to newemp;
+
+Table renamed.
+=================================================================================================
+query 17:-truncate  table.
+
+SQL> truncate table newemp;
+
+Table truncated.
+==================================================================================================
+query 18:-select query.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+ACCOUNT                        TABLE
+BONUS                          TABLE
+CUSTOMER                       TABLE
+DEPT                           TABLE
+DEPT1                          TABLE
+EMPLOYEE                       TABLE
+GUIDES1                        TABLE
+NEWEMP                         TABLE
+RECEIPT                        TABLE
+SALGRADE                       TABLE
+WORKSFOR                       TABLE
+
+11 rows selected.
+=======================================================================
+QUERY 19:-create table.
+SQL> create table customer(cust_id VARCHAR(100) primary key,cust_name VARCHAR(100),cust_address VARC
+200));
+
+Table created.
+
+===============================================================================================
+QUERY 20:-create table.
+SQL>  create table bike(bike_id VARCHAR(100) primary key,model VARCHAR(100),color VARCHAR(100),price
+ number);
+
+Table created.
+================================================================================================
+QUERY 21:-create table.
+SQL>  create table wearhouse(house_no VARCHAR(100) primary key,street VARCHAR(200),city VARCHAR(100)
+,capacity number);
+
+Table created.
+
+==================================================================================================
+QUERY 22:-create table.
+SQL>  create table owns(cust_id references customer(cust_id),bike_id references bike(bike_id));
+
+Table created.
+
+==============================================================================================
+QUERY 23:-create table.
+SQL> create table stores(bike_id references bike(bike_id),house_no references wearhouse(house_no));
+
+Table created.
+
+================================================================================================
+
+query 24:-alter table customer?
+
+SQL> alter table customer
+  2  add( sample varchar2(4) );
+
+Table altered.
+
+======================================================================
+query 25:- describe customer table?
+
+SQL> describe customer;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID                                   NOT NULL VARCHAR2(100)
+ CUST_NAME                                          VARCHAR2(100)
+ CUST_ADDRESS                                       VARCHAR2(200)
+ SAMPLE                                             VARCHAR2(4)
+
+======================================================================
+query 26:- drop table customer?
+
+SQL> alter table customer
+  2  drop(sample);
+
+Table altered.
+=======================================================================
+query 27:- rename table customer?
+
+SQL> rename customer to newcust;
+
+Table renamed.
+
+=======================================================================
+query 28:-all table display?
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+ACCOUNT                        TABLE
+BIKE                           TABLE
+BONUS                          TABLE
+COURSE                         TABLE
+DEPARTMENT                     TABLE
+DEPT                           TABLE
+EMP                            TABLE
+EMPLOYEE                       TABLE
+FESTUD                         TABLE
+NEWCUST                        TABLE
+OWNS                           TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+P                              TABLE
+PRA                            TABLE
+RECEIPT                        TABLE
+SALGRADE                       TABLE
+STORES                         TABLE
+STUD                           TABLE
+STUD1                          TABLE
+STUDENT                        TABLE
+WEARHOUSE                      TABLE
+
+20 rows selected.
+
+========================================================================
+quary 29:- delete the table customer?
+
+SQL> delete customer;
+
+3 rows deleted.
+=======================================================================
+QUERY 30:-create table.
+SQL> create table accident (primary key (bike_id),bike_id varchar2(6),place varchar2(11),reporting_date date);
+
+
+Table created.
+==============================================================================================================
+QUERY 31:-create table.
+sql>	create table insurence (primary key (bike_id),bike_id varchar2(6),insurence_amount number(7),insurence_period varchar2(10),policy_no number(6));
+
+
+Table created.
+========================================================================================================================================================
+QUERY 32:-create table.
+SQL> create table participated (bike_id varchar2(6),accident_id varchar2(6));
+
+Table created.
+
+
+
+============================================================================
+
+*************************data manipulation language 31 TO 91**************************
+
+===============================================================================
+
+
+Query 33:- Insert the one record in the Employee table by using insert command.
+
+SQL> insert into Employee values('e100','Sunil_Kale','Latur',30000);
+
+1 row created.
+
+========================================================================================  
+query 34:-select query.
+SQL> select * from Employee;
+
+EMP_ EMP_NAME                  EMP_ADDR                          EMP_SAL
+---- ------------------------- ------------------------------ ----------
+e100 Sunil_Kale                Latur                               30000
+==================================================================================================
+
+
+Query 35:- Insert the one record in the Employee table by using insert command.
+
+SQL> insert into Employee values('e100','Sunil_Kale','Latur',30000);
+
+1 row created.
+==============================================================================================
+query 36:-display date?
+
+
+SQL> select sysdate
+  2  from dual;
+
+SYSDATE
+---------
+08-SEP-08
+=================================================================================================
+query 37:-squear query.
+
+SQL> select sqrt(25) "sqr" from dual;
+
+       sqr
+----------
+         5
+=================================================================================================
+query 38:- absulate query.
+SQL> select abs(-15) "abs1" from dual;
+
+      abs1
+----------
+        15
+
+===============================================================================================
+query 38:- perform power query.
+
+SQL> select power(3,2) "pow" from dual;
+
+       pow
+----------
+         9
+==================================================================================================
+query 39:-lower case query.
+
+SQL> select lower('SUNIL') " LOWER " FROM DUAL;
+
+ LOWE
+-----
+sunil
+==============================================================================================
+query 40:-upper case query.
+
+SQL> select upper('sunil') "UP" from dual;
+
+UP
+-----
+SUNIL
+
+=================================================================================================
+query 41:- first char is capital.
+
+SQL> select initcap('SUNIL') "ICAP" FROM DUAL;
+
+ICAP
+-----
+Sunil
+=============================================================================================
+query 42:- sub string query.
+
+SQL> SELECT SUBSTR('SUNILKALE',3,4) "SUBSTR" FROM DUAL;
+
+SUBS
+----
+NILK
+=============================================================================================
+query 43:-ascii query.
+ 
+SQL> SELECT ASCII('b') "Ascii of b" from dual;
+
+Ascii of b
+----------
+        98
+
+================================================================================================
+query 44:-find len.
+ 
+SQL> select length('sunil') "len" from dual;
+
+       len
+----------
+         5
+================================================================================================
+query 45:- find veg.
+
+SQL> select avg(emp_sal) " avg of emp_sal" from employee;
+
+ avg of emp_sal
+---------------
+          25000
+
+====================================================================================================
+query 46:-find max sal.
+ 
+SQL> select max(emp_sal) " max of emp_sal" from employee;
+
+ max of emp_sal
+---------------
+          30000
+
+=================================================================================================
+query 47:-find min sal.
+SQL> select min(emp_sal) "min of emp_sal" from employee;
+
+min of emp_sal
+--------------
+         20000
+
+=================================================================================================
+query 48:-find count sal.
+
+SQL> select count(emp_sal) " count " from employee;
+
+    count
+----------
+         2
+===========================================================================
+query 49:-cal sum sal.
+
+SQL> select sum(emp_sal) " sum" from employee;
+
+       sum
+----------
+     50000
+==================================================================================================
+query 50:-dual query.
+
+SQL> select 4+5
+  2  from dual;
+
+       4+5
+----------
+         9
+
+
+=========================================================================================
+query 51:-insert query.
+
+SQL>insert into customer values('c_101','sameer verma','m.k,road,baramati');
+
+1 row created.
+
+========================================================================================
+query 52:-insert query.
+
+SQL> insert into customer values('c_102','rahul rai','m-g road,pune');
+
+1 row created.
+
+=======================================================================================
+query 53:-insert query.
+
+SQL> insert into customer values('c_103','dhiraj shing','f-c road,pune');
+
+1 row created.
+
+=======================================================================================
+query 54:-select query.
+
+SQL> select * from customer;
+
+_ID
+----------------------------------------------------------------------------
+_NAME
+----------------------------------------------------------------------------
+_ADDRESS
+----------------------------------------------------------------------------
+1
+sameer verma
+m.k road,baramati
+
+2
+rahul rai
+m.g road,pune
+
+_ID
+----------------------------------------------------------------------------
+_NAME
+----------------------------------------------------------------------------
+_ADDRESS
+----------------------------------------------------------------------------
+
+3
+dhiraj shing
+f.c road,pune
+
+
+==========================================================================================
+query 55:-insert query.
+
+SQL> insert into bike values('B_101','gear','red',500000);
+
+1 row created.
+
+===========================================================================================
+query 56:-insert query.
+
+SQL>  insert into bike values('B_102','without gear','black',45000);
+
+1 row created.
+
+============================================================================================
+query 57:-insert query.
+
+SQL> insert into bike values('B_103','gear','silver',51000);
+
+1 row created.
+
+============================================================================================
+query 58:-insert query.
+
+SQL> insert into bike values('B_104','without gear','blue',40000);
+
+1 row created.
+============================================================================================
+query 59:-select query.
+
+SQL> select * from bike;
+
+BIKE_ID
+--------------------------------------------------------------------------------
+MODEL
+--------------------------------------------------------------------------------
+COLOR
+--------------------------------------------------------------------------------
+     PRICE
+----------
+B_101
+gear
+red
+    500000
+
+
+BIKE_ID
+--------------------------------------------------------------------------------
+MODEL
+--------------------------------------------------------------------------------
+COLOR
+--------------------------------------------------------------------------------
+     PRICE
+----------
+B_102
+without gear
+black
+     45000
+
+
+BIKE_ID
+--------------------------------------------------------------------------------
+MODEL
+--------------------------------------------------------------------------------
+COLOR
+--------------------------------------------------------------------------------
+     PRICE
+----------
+B_103
+gear
+silver
+     51000
+
+
+BIKE_ID
+--------------------------------------------------------------------------------
+MODEL
+--------------------------------------------------------------------------------
+COLOR
+--------------------------------------------------------------------------------
+     PRICE
+----------
+B_104
+without gear
+blue
+     40000
+
+
+============================================================================================
+query 60:-insert query.
+
+SQL> insert into wearhouse values('H_101','m-g road','pune',50);
+
+1 row created.
+
+============================================================================================
+query 61:-insert query.
+
+SQL>  insert into wearhouse values('H_102','f-c road','pune',60);
+
+1 row created.
+
+============================================================================================
+query 62:-insert query.
+
+SQL> insert into wearhouse values('H_103','v-p road','baramati',65);
+
+1 row created.
+============================================================================================
+query 63:-insert query.
+
+SQL>  insert into wearhouse values('H_104','m.i.d.c road','baramati',75);
+
+1 row created.
+============================================================================================
+query 64:-select query.
+
+SQL> select * from wearhouse;
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_101
+m-g road
+pune
+        50
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_102
+f-c road
+pune
+        60
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_103
+v-p road
+baramati
+        65
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_104
+m.i.d.c road
+baramati
+        75
+
+============================================================================================
+query 65:-insert query.
+
+SQL> insert into stores values('B_101','H_101');
+
+1 row created.
+============================================================================================
+query 66:-insert query.
+
+SQL> insert into stores values('B_102','H_102');
+
+1 row created.
+ 
+============================================================================================
+query 67:-select query.
+
+SQL> select * from stores
+  2  ;
+
+BIKE_ID
+--------------------------------------------------------------------------------
+HOUSE_NO
+--------------------------------------------------------------------------------
+B_101
+H_101
+
+B_102
+H_102
+============================================================================================
+query 68:-insert query.
+
+SQL> insert into owns values('c_101','B_101');
+
+1 row created.
+============================================================================================
+query 69:-insert query.
+
+SQL> insert into owns values('c_102','B_102');
+
+1 row created.
+============================================================================================
+query 70:-insert query.
+
+SQL> insert into owns values('c_103','B_103');
+
+1 row created.
+============================================================================================
+query 71:-select query.
+
+SQL> select * from owns
+  2  ;
+
+CUST_ID
+--------------------------------------------------------------------------------
+BIKE_ID
+--------------------------------------------------------------------------------
+c_101
+B_101
+
+c_102
+B_102
+
+c_103
+B_103
+============================================================================================
+query 72:-display date query.
+
+SQL> select sysdate
+  2  from dual;
+
+SYSDATE
+---------
+15-SEP-08
+
+===========================================================================================
+query 73:- find sqrt:
+
+SQL> select sqrt(25) "sqr" from dual;
+
+       sqr
+----------
+         5
+
+=============================================================================================
+query 74:-find absoulate value?
+
+SQL> select abs(-15) "abs1" from dual;
+
+      abs1
+----------
+        15
+
+==============================================================================================
+query 75:-find power?
+
+SQL> select power(3,2) "pow" from dual;
+
+       pow
+----------
+         9
+
+===============================================================================================
+query 76:-display lower case?
+
+SQL> select lower('SUNIL') " LOWER " FROM DUAL;
+
+ LOWE
+-----
+sunil
+
+===============================================================================================
+query 77:-display upper case?
+
+SQL> select upper('jayshree') "UP" from dual;
+
+UP
+--------
+JAYSHREE
+
+==============================================================================================
+query 78:-display initcap?
+
+SQL> select initcap('JAYSHREE') "ICAP" FROM DUAL;
+
+ICAP
+--------
+Jayshree
+
+===============================================================================================
+query 79:-display substring?
+
+SQL> SELECT SUBSTR('JAYSHREEDHAYGUDE',3,4) "SUBSTR" FROM DUAL;
+
+SUBS
+----
+YSHR
+
+===============================================================================================
+query 80:-find ASCII value?
+
+SQL> SELECT ASCII('b') "Ascii of b" from dual;
+
+Ascii of b
+----------
+        98
+
+===============================================================================================
+query 81:- Find the length.
+
+SQL> select length('sunil') "len" from dual;
+
+       len
+----------
+         5
+
+==========================================================================================
+query 82:-find the veg.
+
+SQL>  select avg(price) "avg of price" from bike;
+
+avg of price
+------------
+      159000
+
+=============================================================================================
+query 83:-find max price?
+
+SQL> select max(price) "max of price" from bike;
+
+max of price
+------------
+      500000
+
+==============================================================================================
+query 84:-find the min price?
+
+SQL> select min(price) "minof price" from bike;
+
+minof price
+-----------
+      40000
+
+================================================================================================
+query 85:-counting the price?
+
+SQL> select count(price) "count" from bike;
+
+     count
+----------
+         4
+
+================================================================================================
+query 86:-sum the price?
+
+SQL> select sum(price)"sum" from bike;
+
+       sum
+----------
+    636000
+
+
+
+==================================================================================================
+query 87:-perform the arithmatic operation.
+
+SQL> select 4+5
+  2  from dual;
+
+       4+5
+----------
+         9
+==================================================================================================
+query 88:-insert query.
+
+SQL> insert into accident values ('b-100','pune','1 jan 2008 ');
+
+1 row created.
+===============================================================================================
+query 89:-insert query.
+
+SQL> insert into accident values ('b-101','mumbai','3 may 2008');
+
+1 row created.
+============================================================================================
+query 90:-insert query.
+
+SQL> insert into accident values ('b-102','nashik','4 aug 2008');
+
+1 row created.
+=============================================================================================
+query 91:-insert query.
+
+SQL> insert into accident values ('b-103','thane','5 dec 2007');
+
+1 row created.
+==============================================================================================
+query 92:-select query.
+
+SQL> select * from accident;
+
+BIKE_ID PLACE       REPORTING_DATE
+------ ----------- ---------
+b-100  pune        01-JAN-08
+b-101  mumbai      03-MAY-08
+b-102  nashik      04-AUG-08
+b-103  thane       05-DEC-07
+=======================================================================
+query 93:-insert query.
+
+sql> insert into insurence1 values ('b-100',100000,'5 years','p-100');
+
+row created.
+=====================================================================================
+query 94:-insert query.
+
+sql> insert into insurence values ('b-101',200000,'10 years','p-101');
+
+row created.
+=======================================================================================
+query 95:-insert query.
+
+sql> insert into insurence values ('b-102',300000,'6 years','p-102');
+
+row created.
+=====================================================================================
+query 96:-insert query.
+
+sql> insert into insurence values ('b-103',400000,'7 years','p-103');
+
+row created.
+=======================================================================
+query 97:-insert query.
+
+SQL>  insert into participated values ('b-100','a-100');
+
+1 row created.
+===============================================================================
+query 98:-insert query.
+
+SQL> insert into  participated values ('b-101','a-101');
+
+1 row created.
+=================================================================================
+query 99:-insert query.
+
+SQL> insert into participated values ('b-102','a-102');
+
+1 row created.
+================================================================================
+query 100:-insert query.
+
+SQL> insert into participated values ('b-103','a-103');
+
+1 row created.
+====================================================================================
+query 101:-select query.
+
+SQL> select * from participated;
+
+BIKE_I ACCIDE
+------ ------
+b-100  a-100
+b-101  a-101
+b-102  a-102
+b-103  a-103
+
+
+
+==================================================================================================
+      ***************DATA CONTROL LANGUAGE COMMAND 92 TO 113**************
+
+================================================================================================
+
+query 102:-grant query.
+
+SQL> grant all on kdept to sunil;
+
+Grant succeeded.
+==========================================================================================
+query 103:-grant query succeeded.
+
+SQL> grant select on kdept to sunil;
+
+Grant succeeded.
+==========================================================================================
+query 104:-create user query.
+
+SQL> create user sunil
+  2  identified by ksunil;
+
+User created.
+======================================================================================
+query 105:-grant query succeeded.
+
+SQL> grant connect to sunil;
+
+Grant succeeded.
+===========================================================================================
+query 106:-revoke query.
+
+SQL> revoke select,insert
+  2  on scott.kdept
+  3  from sunil;
+
+Revoke succeeded.
+============================================================================================
+query 107:-grant query.
+
+SQL> grant create table to sunil;
+
+Grant succeeded.
+============================================================================================
+query 108:-role query.
+
+SQL> create role manager
+  2  ;
+
+Role created.
+=============================================================================================
+query 109:-grant query.
+SQL> grant manager to system,sunil;
+
+Grant succeeded.
+=============================================================================================
+query 110:-grant update query.
+
+SQL> grant update
+  2  on scott.kdept
+  3  to sunil;
+
+Grant succeeded.
+============================================================================================
+query 111:-trigger query.
+
+------------ trigger ----------------------------------------
+SQL> create or replace trigger tr  before update on kemployee
+  2  for each row
+  3  begin
+  4  if :new.emp_sal<20000 then
+  5  raise_application_error(-20005,'invalid  salary ');
+  6  end if;
+  7  end;
+  8  /
+Trigger created.
+
+======================================================================
+query 112:-update trigger?
+
+SQL> update kemployee
+  2  set emp_sal=2000
+  3  where emp_id='e108';
+update bike
+       *
+ERROR at line 1:
+ORA-20005: invalid salary
+ORA-06512: at "SCOTT.TR", line 3
+ORA-04088: error during execution of trigger 'SCOTT.TR'
+=============================================================================================
+query 113:-procedure query?
+
+SQL> create or replace procedure pro(emp_id varchar2)
+  2  as
+  3  begin
+  4  dbms_output.put_line('ok');
+  5  end pro;
+  6  /
+
+Procedure created.
+====================================================================
+query 114:-update procedure?
+
+SQL> execute pro('e109');
+
+PL/SQL procedure successfully completed.
+
+
+============================================================================================
+query 115:-create user by grant command?
+
+SQL> create user swati identified by swati;
+
+User created.
+
+==============================================================================================
+squery 116:-grant succeed?
+
+SQL> grant connect to swati;
+
+Grant succeeded.
+
+==============================================================================================
+query 117:- connect user?
+
+SQL> connect swati/swati;
+Connected.
+
+
+================================================================================================
+query 118:-insert commend to the system?
+
+SQL> insert into scott.newcust  values('c103','nilesh','pune');
+
+1 row created.
+===================================================================================================
+query 119:-insert query.
+
+SQL> insert into scott.newcust  values('c104','mayur','baramati');
+
+1 row created.
+
+========================================================================
+query 120:-grant to table?
+
+SQL>  grant all
+  2  on newcust
+  3  to swati;
+
+Grant succeeded.
+
+======================================================================
+query 121:-revoke query?
+
+SQL> revoke select,insert
+  2  on scott.newcust
+  3  from swati
+  4  ;
+
+Revoke succeeded.
+===========================================================================
+query 122:-grant command to update?
+
+SQL> grant update
+  2  on scott.newcust
+  3  to swati;
+
+Grant succeeded.
+========================================================================
+query 123:-create the trigger?
+
+SQL> create or replace trigger tr  before update on bike
+  2  for each row
+  3  begin
+  4  if :new.price<50000 then
+  5  raise_application_error(-500001,'invalid  salary ');
+  6  end if;
+  7  end;
+  8  /
+
+Trigger created.
+
+======================================================================
+query 124:-update trigger?
+
+SQL> update bike
+  2  set price=2000
+  3  where bike_id='B_102';
+update bike
+       *
+ERROR at line 1:
+ORA-20005: invalid price
+ORA-06512: at "SCOTT.TR", line 3
+ORA-04088: error during execution of trigger 'SCOTT.TR'
+==========================================================================
+query 125:-create the procedure?
+
+SQL> create or replace procedure pro(cust_id varchar2)
+  2  as
+  3  begin
+  4  dbms_output.put_line('ok');
+  5  end pro;
+  6  /
+
+Procedure created.
+======================================================================
+query 126:-update procedure?
+
+SQL> execute pro('c_109');
+
+PL/SQL procedure successfully completed.
+==========================================================================
+query 127:-create user query?
+
+SQL> create user swati identified by swati;
+
+User created.
+=====================================================================================
+query 128:-grant query.
+
+SQL> grant connect to swati;
+
+Grant succeeded.
+
+======================================================================
+query 129:-connected query.
+
+SQL> connect swati/swati;
+Connected.
+
+
+========================================================================
+query 130:-insert query?
+
+SQL> insert into scott.newcust  values('c103','nilesh','pune');
+
+1 row created.
+
+========================================================================
+query 131:-grant query.
+
+SQL>  grant all
+  2  on newcust
+  3  to swati;
+
+Grant succeeded.
+
+=========================================================================
+query 132:-insert query.
+
+SQL> insert into scott.bike1  values('b_104','brown',55,45000,'withgear');
+
+1 row created.
+
+======================================================================
+query 133:-revoke query.
+
+SQL> revoke select,insert
+  2  on scott.bike1
+  3  from swati
+  4  ;
+
+Revoke succeeded.
+===========================================================================
+query 134:-grant update query.
+
+SQL> grant update
+  2  on scott.bike1
+  3  to swati;
+
+Grant succeeded.
+======================================================================
+query 135:-create trigger?
+
+SQL> create or replace trigger tr  before update on bike
+  2  for each row
+  3  begin
+  4  if :new.price<50000 then
+  5  raise_application_error(-500001,'invalid  salary ');
+  6  end if;
+  7  end;
+  8  /
+
+Trigger created.
+
+======================================================================
+query 136:-update trigger?
+
+SQL> update bike
+  2  set price=2000
+  3  where bike_id='B_102';
+update bike
+       *
+ERROR at line 1:
+ORA-20005: invalid price
+ORA-06512: at "SCOTT.TR", line 3
+ORA-04088: error during execution of trigger 'SCOTT.TR'
+==========================================================================
+query 137:-create the procedure?
+
+SQL> create or replace procedure pro(cust_id varchar2)
+  2  as
+  3  begin
+  4  dbms_output.put_line('ok');
+  5  end pro;
+  6  /
+
+Procedure created.
+========================================================================
+query 138:-update procedure?
+SQL> execute pro('c_109');
+
+PL/SQL procedure successfully completed.
+
+
+=================================================================================
+
+************************* COMPLEX QUERY**************************************s
+===============================================================================
+query 139:-select query.
+
+SQL> select * 
+  2  from kdept;
+
+DEPT_ DEPT_NAME
+----- --------------------
+d300  Sales
+d301  Service
+d302  Purchase
+==============================================================================
+query 140:-select query.
+
+SQL> select * 
+  2  from kcustomer;
+
+CUST CUST_NAME                 CUST_ADD
+---- ------------------------- ------------------------------
+c200 Charu Pawar               Pune
+c201 Sachin Devade             Latur
+c202 Satish Pal                Mumbai
+c203 Mahesh Devi               Solapur
+c204 Pravin Avhad              Baramati
+
+===================================================================================
+query 141:-group by query.
+========== GROUP BY =============================================
+SQL> select dept_id,sum(emp_sal)"total sum"
+  2  from kemployee
+  3  group by dept_id;
+
+DEPT_  total sum
+----- ----------
+d300       60000
+d301       50000
+d302       50000
+==================================================================
+query 142:- string operation query.
+================ STRING OPERATION ==========================
+SQL> SELECT EMP_NAME
+  2  FROM KEMPLOYEE
+  3  WHERE EMP_NAME LIKE 'Su%';
+
+EMP_NAME
+-------------------------
+Sunil_Kale
+==============================================================================
+
+query 143:- string operation query.
+
+SQL> SELECT EMP_NAME
+  2  FROM KEMPLOYEE
+  3  WHERE EMP_NAME LIKE '_u%'
+  4       or EMP_NAME LIKE '_a%';
+
+EMP_NAME
+-------------------------
+Sunil_Kale
+Manisha More
+Jayshri Dhaigude
+
+===================================================================
+query 144:- order by query.
+
+SQL> select *
+  2  from employee
+  3  order by emp_name desc;
+
+EMP_ EMP_NAME                  EMP_ADDR                          EMP_SAL
+---- ------------------------- ------------------------------ ----------
+e100 Sunil_Kale                Latur                               30000
+e101 Abhijeet Tupe             Pune                                20000
+
+================================================================================================
+query 145:- order by query.
+
+SQL> select *
+  2  from employee
+  3  order by emp_name ;
+
+EMP_ EMP_NAME                  EMP_ADDR                          EMP_SAL
+---- ------------------------- ------------------------------ ----------
+e101 Abhijeet Tupe             Pune                                20000
+e100 Sunil_Kale                Latur                               30000
+==================================================================================================
+query 146:-Sort the query order by descending.
+
+SQL> select 
+  2  * from wearhouse
+  3  order by city desc;
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_101
+m-g road
+pune
+        50
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_102
+f-c road
+pune
+        60
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_103
+v-p road
+baramati
+        65
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_104
+m.i.d.c road
+baramati
+        75
+
+
+==============================================================================================
+query 147:-asecending order by query?
+
+SQL> select * from wearhouse
+  2  order by city;
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_103
+v-p road
+baramati
+        65
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_104
+m.i.d.c road
+baramati
+        75
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_101
+m-g road
+pune
+        50
+
+
+HOUSE_NO
+--------------------------------------------------------------------------------
+STREET
+--------------------------------------------------------------------------------
+CITY
+--------------------------------------------------------------------------------
+  CAPACITY
+----------
+H_102
+f-c road
+pune
+        60
+----------------------------------------------------------------------
+query 148:- find of all bike_id where averge price is more than 50000?
+
+SQL>  select bike_id,avg(price) from bike
+  2   group by bike_id
+  3   having avg(price)>50000;
+
+BIKE_ID
+------------------------------------------------------------------------
+AVG(PRICE)
+----------
+B_101
+    500000
+
+B_103
+     51000
+
+========================================================================
+
+
+
+
